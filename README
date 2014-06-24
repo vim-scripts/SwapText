@@ -1,0 +1,49 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4971
+
+DESCRIPTION
+Swapping text areas when there's other text in between (e.g. function
+arguments separated by other arguments) is done frequently, yet cumbersome.
+One way to do this is by deleting A, selecting B, pasting over it, then going
+back to where A used to be and pasting the original B.
+
+This plugin lets you exchange the current selection / line / text covered by a
+motion with the previously deleted text, with a short and simple mapping. The
+swap can be undone as a single action.
+
+SOURCE
+Based on vimtip #470: Map to quickly swap/exchange arbitrary text by Piet
+Delport and an enhancement by ad_scriven@postmaster.co.uk.
+    http://vim.wikia.com/wiki/Swapping_characters,_words_and_lines
+
+SEE ALSO
+- The LineJuggler.vim plugin (vimscript #4140) provides [E / ]E mappings to
+  swap lines / the selection with the same amount of visible lines located
+  [count] above / below.
+- The LineJugglerCommands.vim plugin (vimscript #4465) provides swapping of
+  ranges as an Ex :Swap command.
+
+RELATED WORKS
+- visswap.vim (http://www.drchip.org/astronaut/vim/vbafiles/visswap.vba.gz)
+  uses a visual selection, <C-y>, another selection, <C-x> to swap the two.
+- swapstrings.vim (http://www.drchip.org/astronaut/vim/#SWAPSTRINGS) can swap
+  all instances of two strings in a range.
+- swap.vim (vimscript #3250) can swap around a pivot (e.g. ==) or to WORDs to
+  the left / right with <Leader>x / <Leader>X.
+- exchange (https://github.com/tommcdo/vim-exchange) defines a cx{motion}
+  operator that has to be used twice to exchange the first with the second
+  one.
+
+USAGE
+First, delete some text (using any normal Vim command, such as "daw",
+{Visual}x, or "dt"). Then, visually select some other text, and press
+<Leader>x, or use the custom operator <Leader>x{motion}. The two pieces of
+text should now be swapped.
+
+{Visual}<Leader>x       Swap the visual selection with the just deleted text.
+<Leader>x{motion}       Swap the characters covered by {motion} with the just
+                        deleted text.
+[count]<Leader>xx       Swap the current [count] line(s) with the just deleted
+                        text.
+[count]<Leader>X        Swap the characters under the cursor until the end of
+                        the line and [count]-1 more lines with the just
+                        deleted text.
