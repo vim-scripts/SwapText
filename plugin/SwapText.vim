@@ -13,6 +13,11 @@
 "	  Piet Delport and an enhancement by ad_scriven@postmaster.co.uk.
 "
 " REVISION	DATE		REMARKS
+"   1.01.019	22-Jul-2014	BUG: <Leader>X includes the newline unless :set
+"				selection=exclusive. Thanks to Enno Nagel for
+"				reporting this.
+"				Minor: Supply the count to "$", no need for a
+"				separate "count times j".
 "   1.00.018	05-May-2014	Abort on error.
 "	017	19-Mar-2013	Revert: Last change broke swapping. Replace
 "				<Bar> with <CR>; because SwapText#Visual() uses
@@ -63,7 +68,7 @@ if ! hasmapto('<Plug>(SwapTextLines)', 'n')
 endif
 
 nnoremap <silent> <Plug>(SwapTextUntilEnd)
-\ :<C-u>execute 'normal! v$' . (v:count > 1 ? (v:count - 1) . 'j' : '')<CR>
+\ :<C-u>execute 'normal! v' . (v:count ? v:count : '') . '$' . (&selection ==# 'exclusive' ? '' : 'h')<CR>
 \:<C-u>if SwapText#UndoJoin()<Bar>call SwapText#Visual()<Bar>else<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
 if ! hasmapto('<Plug>(SwapTextUntilEnd)', 'n')
     nmap <Leader>X <Plug>(SwapTextUntilEnd)

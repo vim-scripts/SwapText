@@ -104,6 +104,10 @@ IDEAS							      *SwapText-ideas*
 ==============================================================================
 HISTORY							    *SwapText-history*
 
+1.01	22-Jul-2014
+- BUG: <Leader>X includes the newline unless :set selection=exclusive. Thanks
+  to Enno Nagel for reporting this.
+
 1.00	24-Jun-2014
 First published version.
 
